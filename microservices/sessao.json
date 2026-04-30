@@ -3,15 +3,15 @@
   "jogadores": [
     {
       "id": 1,
-      "nome": "el mago",
-      "hp": 14,
-      "max_hp": 14,
-      "fotoUrl": "https://imgs.search.brave.com/Myno-NwOj9UnhAJ8qGOeGniPtTvMkH-3YE_UBpHBti0/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9wcmV2/aWV3LnJlZGQuaXQv/Zm9yLWhpcmUtZG5k/LXBhdGhmaW5kZXIt/Y2hhcmFjdGVyLXNo/b3djYXNlLXJ1bGVi/b29rLXYwLXQ1czBy/bGtzd2E1ZTEucG5n/P3dpZHRoPTY0MCZj/cm9wPXNtYXJ0JmF1/dG89d2VicCZzPTI0/YzA1OTdmNTk5OGEx/YjU2NDM2OTZiOWFk/YmNmYzcyZTM5Yzk5/Zjg"
+      "nome": "el amago 2",
+      "hp": 9,
+      "max_hp": 15,
+      "fotoUrl": "https://imgs.search.brave.com/ZK8-SWBBqAUttDyKWULQVsNU_-U1xYDoZrKTW1JkW0c/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pLm1l/dHJvaW1nLmNvbS94/Zi01V3pBZzFOU0dm/RWFaRDB5RUlHbFZ2/NlA3TTlTOWtDb2k2/VmNrSTNRL3c6OTAw/L3E6ODUvZjp3ZWJw/L3BsYWluL2h0dHBz/Oi8vaW1hZ2VzLm1l/dHJvaW1nLmNvbS8y/MDIwLzAxLzA5MTI0/NDQ2L3NhbHNpY2hp/bmhhLmpwZw"
     },
     {
       "id": 2,
       "nome": "Jogador 2",
-      "hp": 10,
+      "hp": 6,
       "max_hp": 10,
       "fotoUrl": ""
     },

@@ -73,7 +73,9 @@ app.post('/api/jogador/:id/dano', async (req, res) => {
             });
         }
 
+        const hpAnterior = p.hp;
         const novoHp = Math.max(0, p.hp - 2);
+        const danoCausado = hpAnterior - novoHp;
 
         await axios.post(
             `${SERVICO_INTERNO}/jogador/${id}/alterar`,
@@ -81,7 +83,14 @@ app.post('/api/jogador/:id/dano', async (req, res) => {
         );
 
         res.json({
-            message: "Dano aplicado via Gateway"
+            success: true,
+            message: `Dano aplicado com sucesso em ${p.nome}!`,
+            jogador: p.nome,
+            dano_causado: danoCausado,
+            hp_anterior: hpAnterior,
+            hp_novo: novoHp,
+            hp_maximo: p.max_hp,
+            status: novoHp <= 0 ? "MORTO" : "VIVO"
         });
 
     } catch (error) {
@@ -95,10 +104,17 @@ app.post('/api/jogador/:id/dano', async (req, res) => {
 // --- CURAR TODOS ---
 app.post('/api/mestre/curar_todos', async (req, res) => {
     try {
-        await axios.post(`${SERVICO_INTERNO}/mestre/curar_todos`);
+        const response = await axios.post(`${SERVICO_INTERNO}/mestre/curar_todos`);
+        const jogadores = response.data.jogadores;
 
         res.json({
-            message: "Comando de cura enviado ao serviço de dados"
+            success: true,
+            message: "✨ Todos os jogadores foram curados!",
+            jogadores_curados: jogadores.length,
+            detalhes: jogadores.map(j => ({
+                nome: j.nome,
+                hp_restaurado: `${j.hp}/${j.max_hp}`
+            }))
         });
 
     } catch (error) {
@@ -123,13 +139,16 @@ app.post('/api/jogador/:id/editar', async (req, res) => {
 
         const { nome, hp, max_hp, fotoUrl } = req.body;
 
-        await axios.post(
+        const response = await axios.post(
             `${SERVICO_INTERNO}/jogador/${id}/alterar`,
             { nome, hp, max_hp, fotoUrl }
         );
 
         res.json({
-            message: "Ficha atualizada!"
+            success: true,
+            message: "✏️ Ficha atualizada com sucesso!",
+            jogador_atualizado: response.data,
+            campos_alterados: Object.keys(req.body)
         });
 
     } catch (error) {
@@ -167,7 +186,11 @@ app.post('/api/jogador/:id/reviver', async (req, res) => {
         );
 
         res.json({
-            message: "Jogador revivido!"
+            success: true,
+            message: `⚡ ${p.nome} foi revivido com sucesso!`,
+            jogador: p.nome,
+            hp_restaurado: `${p.max_hp}/${p.max_hp}`,
+            status: "VIVO"
         });
 
     } catch (error) {
