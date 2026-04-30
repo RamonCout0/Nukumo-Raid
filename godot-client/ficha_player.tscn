@@ -61,6 +61,5 @@ offset_top = -1.7736259
 offset_right = 81.38802
 offset_bottom = 21.226374
 scale = Vector2(0.09013987, 0.8752115)
-text = "swws"
 
 [node name="ImageLoader" type="HTTPRequest" parent="." unique_id=1229126853]
