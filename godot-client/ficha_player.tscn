@@ -1,0 +1,66 @@
+[gd_scene format=3 uid="uid://c8orompmvex2j"]
+
+[ext_resource type="Script" uid="uid://dbfsr4kh5bnv7" path="res://ficha_player.gd" id="1_5bpfm"]
+[ext_resource type="Texture2D" uid="uid://pm6g4aceoi7i" path="res://ficha.png" id="2_eamsx"]
+[ext_resource type="Shader" uid="uid://drt4a4rya2gt7" path="res://ficha_player.gdshader" id="2_juv0t"]
+[ext_resource type="Texture2D" uid="uid://cjw6auhtohnr8" path="res://barravazia.png" id="3_juv0t"]
+[ext_resource type="Texture2D" uid="uid://douk1ik1tf0jw" path="res://barra3.png" id="4_gxy1q"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gxy1q"]
+shader = ExtResource("2_juv0t")
+shader_parameter/raio = 0.5690000270275
+shader_parameter/suavidade = 0.10000000149012
+shader_parameter/centro = Vector2(0.5, 0.5)
+
+[node name="FichaPlayer" type="Control" unique_id=2006501656]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_5bpfm")
+
+[node name="FotoDoJogador" type="TextureRect" parent="." unique_id=2099523032]
+material = SubResource("ShaderMaterial_gxy1q")
+layout_mode = 0
+offset_left = 3.0
+offset_top = 4.0
+offset_right = 58.0
+offset_bottom = 58.0
+expand_mode = 1
+
+[node name="SuaBordaRúnica" type="TextureRect" parent="." unique_id=2101990428]
+texture_filter = 1
+layout_mode = 0
+offset_right = 128.0
+offset_bottom = 128.0
+texture = ExtResource("2_eamsx")
+
+[node name="NomeLabel" type="Label" parent="." unique_id=902882145]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 71.0
+offset_right = 124.0
+offset_bottom = 94.0
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="." unique_id=893242323]
+layout_mode = 0
+offset_left = 29.0
+offset_top = 104.0
+offset_right = 47.0
+offset_bottom = 122.0
+scale = Vector2(5.2399993, 1.1276336)
+texture_under = ExtResource("3_juv0t")
+texture_progress = ExtResource("4_gxy1q")
+
+[node name="ValorHP" type="Label" parent="TextureProgressBar" unique_id=397943234]
+layout_mode = 0
+offset_left = 3.0534358
+offset_top = -1.7736259
+offset_right = 81.38802
+offset_bottom = 21.226374
+scale = Vector2(0.09013987, 0.8752115)
+text = "swws"
+
+[node name="ImageLoader" type="HTTPRequest" parent="." unique_id=1229126853]

@@ -1,0 +1,33 @@
+{
+  "mestre_online": true,
+  "jogadores": [
+    {
+      "id": 1,
+      "nome": "el mago",
+      "hp": 6,
+      "max_hp": 14,
+      "fotoUrl": "https://imgs.search.brave.com/Myno-NwOj9UnhAJ8qGOeGniPtTvMkH-3YE_UBpHBti0/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9wcmV2/aWV3LnJlZGQuaXQv/Zm9yLWhpcmUtZG5k/LXBhdGhmaW5kZXIt/Y2hhcmFjdGVyLXNo/b3djYXNlLXJ1bGVi/b29rLXYwLXQ1czBy/bGtzd2E1ZTEucG5n/P3dpZHRoPTY0MCZj/cm9wPXNtYXJ0JmF1/dG89d2VicCZzPTI0/YzA1OTdmNTk5OGEx/YjU2NDM2OTZiOWFk/YmNmYzcyZTM5Yzk5/Zjg"
+    },
+    {
+      "id": 2,
+      "nome": "Jogador 2",
+      "hp": 2,
+      "max_hp": 10,
+      "fotoUrl": ""
+    },
+    {
+      "id": 3,
+      "nome": "Hero",
+      "hp": 2,
+      "max_hp": 10,
+      "fotoUrl": ""
+    },
+    {
+      "id": 4,
+      "nome": "Jogador 4",
+      "hp": 2,
+      "max_hp": 10,
+      "fotoUrl": ""
+    }
+  ]
+}

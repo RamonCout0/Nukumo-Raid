@@ -1,0 +1,15 @@
+{
+  "name": "nukumo-microservice",
+  "version": "1.0.0",
+  "description": "Microserviço de persistência para Nukumo Raid VTT",
+  "main": "service.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node service.js",
+    "dev": "node service.js"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}
