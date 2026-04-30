@@ -3,31 +3,31 @@
   "jogadores": [
     {
       "id": 1,
-      "nome": "el amago 2",
-      "hp": 9,
-      "max_hp": 15,
+      "nome": "cachorro clerigo",
+      "hp": 6,
+      "max_hp": 10,
       "fotoUrl": "https://imgs.search.brave.com/ZK8-SWBBqAUttDyKWULQVsNU_-U1xYDoZrKTW1JkW0c/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pLm1l/dHJvaW1nLmNvbS94/Zi01V3pBZzFOU0dm/RWFaRDB5RUlHbFZ2/NlA3TTlTOWtDb2k2/VmNrSTNRL3c6OTAw/L3E6ODUvZjp3ZWJw/L3BsYWluL2h0dHBz/Oi8vaW1hZ2VzLm1l/dHJvaW1nLmNvbS8y/MDIwLzAxLzA5MTI0/NDQ2L3NhbHNpY2hp/bmhhLmpwZw"
     },
     {
       "id": 2,
-      "nome": "Jogador 2",
-      "hp": 6,
-      "max_hp": 10,
-      "fotoUrl": ""
+      "nome": "cachorro bruxo",
+      "hp": 9,
+      "max_hp": 9,
+      "fotoUrl": "https://imgs.search.brave.com/8MlkXvqASqqbyWrfRM1t7lVefSI4RqaR_dw9EX5spQQ/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9zdGF0/aWMubmRtYWlzLmNv/bS5ici8yMDIzLzA5/L2NvcnJpZGEtZGUt/c2Fsc2ljaGEtODAw/eDUzMy5qcGc"
     },
     {
       "id": 3,
-      "nome": "Hero",
-      "hp": 10,
-      "max_hp": 10,
-      "fotoUrl": ""
+      "nome": "cachorro druida",
+      "hp": 8,
+      "max_hp": 8,
+      "fotoUrl": "https://imgs.search.brave.com/8V73COlMQCHW-NoOat8zl5i-cvTDAF8_201cRw3yqbA/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWcu/ZnJlZXBpay5jb20v/Zm90b3MtZ3JhdGlz/L2Nsb3NlLXZlcnRp/Y2FsLWRlLXVtLWNh/Y2hvcnJvLWJhc3Nl/LW1hcnJvbS1jb20t/dW1hLW5hdHVyZXph/LWJvcnJhZGFfMTgx/NjI0LTI4MjQ0Lmpw/Zz9zZW10PWFpc19o/eWJyaWQmdz03NDAm/cT04MA"
     },
     {
       "id": 4,
-      "nome": "Jogador 4",
-      "hp": 10,
-      "max_hp": 10,
-      "fotoUrl": ""
+      "nome": "cachorro tank",
+      "hp": 16,
+      "max_hp": 16,
+      "fotoUrl": "https://imgs.search.brave.com/mFD-o0HAUMDsRhUT46GUBLGpnLd23aOmAZva4Yl2urE/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9vYmpl/Y3RzdG9yYWdlLnNh/LXZpbmhlZG8tMS5v/cmFjbGVjbG91ZC5j/b20vbi9heHVoM3Mz/MnNhYm0vYi9jb2Jh/c2ktaW5zdGl0dXRp/b25hbC1jbXMtYnVj/a2V0L28vcHJvZC9j/YWNob3Jyb19zYWx1/a2kud2VicA"
     }
   ]
 }

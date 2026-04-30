@@ -226,20 +226,62 @@ app.get('/openapi.json', (req, res) => {
 
             "/api/estado": {
                 get: {
-                    summary: "Estado"
+                    summary: "Obter Estado da Sessão",
+                    description: "Retorna o estado completo da sessão com todos os jogadores",
+                    responses: {
+                        "200": {
+                            description: "OK",
+                            content: {
+                                "application/json": {
+                                    schema: {
+                                        type: "object",
+                                        properties: {
+                                            data: {
+                                                type: "object",
+                                                properties: {
+                                                    jogadores: {
+                                                        type: "array",
+                                                        items: {
+                                                            type: "object",
+                                                            properties: {
+                                                                id: { type: "integer" },
+                                                                nome: { type: "string" },
+                                                                hp: { type: "integer" },
+                                                                max_hp: { type: "integer" },
+                                                                fotoUrl: { type: "string" }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            _links: { type: "object" }
+                                        }
+                                    },
+                                    example: {
+                                        data: {
+                                            jogadores: [
+                                                { id: 1, nome: "Jogador 1", hp: 10, max_hp: 10, fotoUrl: "https://..." }
+                                            ]
+                                        },
+                                        _links: { self: "http://localhost:3000/api/estado?ator=observador" }
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
             },
 
             "/api/jogador/{id}/editar": {
                 post: {
-                    summary: "Editar Jogador",
-
+                    summary: "Editar Ficha do Jogador",
+                    description: "Atualiza os dados de um jogador específico",
                     parameters: [
                         {
                             name: "id",
                             in: "path",
                             required: true,
-                            description: "ID entre 1 e 4",
+                            description: "ID do jogador (1-4)",
                             schema: {
                                 type: "string",
                                 enum: ["1","2","3","4"],
@@ -247,23 +289,25 @@ app.get('/openapi.json', (req, res) => {
                             }
                         }
                     ],
-
                     requestBody: {
                         required: false,
+                        description: "Dados a atualizar",
                         content: {
                             "application/json": {
                                 schema: {
                                     type: "object",
                                     properties: {
-                                        nome: { type: "string" },
-                                        hp: { type: "integer" },
-                                        max_hp: { type: "integer" },
-                                        fotoUrl: { type: "string" }
+                                        nome: { type: "string", description: "Nome do jogador" },
+                                        hp: { type: "integer", description: "Pontos de vida atuais" },
+                                        max_hp: { type: "integer", description: "Pontos de vida máximos" },
+                                        fotoUrl: { type: "string", description: "URL da foto" }
                                     }
                                 },
                                 example: {
                                     nome: "Herói",
-                                    hp: 10
+                                    hp: 10,
+                                    max_hp: 10,
+                                    fotoUrl: "https://..."
                                 }
                             }
                         }
@@ -271,7 +315,16 @@ app.get('/openapi.json', (req, res) => {
 
                     responses: {
                         "200": {
-                            description: "OK"
+                            description: "Ficha atualizada com sucesso",
+                            content: {
+                                "application/json": {
+                                    example: {
+                                        success: true,
+                                        message: "✏️ Ficha atualizada com sucesso!",
+                                        jogador_atualizado: { id: 1, nome: "Herói", hp: 10, max_hp: 10 }
+                                    }
+                                }
+                            }
                         }
                     }
                 }
@@ -279,43 +332,100 @@ app.get('/openapi.json', (req, res) => {
 
             "/api/jogador/{id}/dano": {
                 post: {
-                    summary: "Dano",
+                    summary: "Aplicar Dano ao Jogador",
+                    description: "Reduz o HP do jogador em 2 pontos",
                     parameters: [
                         {
                             name: "id",
                             in: "path",
                             required: true,
+                            description: "ID do jogador (1-4)",
                             schema: {
                                 type: "string",
                                 enum: ["1","2","3","4"],
                                 default: "1"
                             }
                         }
-                    ]
+                    ],
+                    responses: {
+                        "200": {
+                            description: "Dano aplicado com sucesso",
+                            content: {
+                                "application/json": {
+                                    example: {
+                                        success: true,
+                                        message: "Dano aplicado com sucesso em Jogador 1!",
+                                        jogador: "Jogador 1",
+                                        dano_causado: 2,
+                                        hp_anterior: 10,
+                                        hp_novo: 8,
+                                        hp_maximo: 10,
+                                        status: "VIVO"
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
             },
 
             "/api/jogador/{id}/reviver": {
                 post: {
-                    summary: "Reviver",
+                    summary: "Reviver Jogador",
+                    description: "Restaura o HP máximo do jogador",
                     parameters: [
                         {
                             name: "id",
                             in: "path",
                             required: true,
+                            description: "ID do jogador (1-4)",
                             schema: {
                                 type: "string",
                                 enum: ["1","2","3","4"],
                                 default: "1"
                             }
                         }
-                    ]
+                    ],
+                    responses: {
+                        "200": {
+                            description: "Jogador revivido com sucesso",
+                            content: {
+                                "application/json": {
+                                    example: {
+                                        success: true,
+                                        message: "⚡ Jogador 1 foi revivido com sucesso!",
+                                        jogador: "Jogador 1",
+                                        hp_restaurado: "10/10",
+                                        status: "VIVO"
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
             },
 
             "/api/mestre/curar_todos": {
                 post: {
-                    summary: "Curar Todos"
+                    summary: "Curar Todos os Jogadores",
+                    description: "Restaura o HP máximo de todos os jogadores",
+                    responses: {
+                        "200": {
+                            description: "Todos curados com sucesso",
+                            content: {
+                                "application/json": {
+                                    example: {
+                                        success: true,
+                                        message: "✨ Todos os jogadores foram curados!",
+                                        jogadores_curados: 4,
+                                        detalhes: [
+                                            { nome: "Jogador 1", hp_restaurado: "10/10" }
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }
