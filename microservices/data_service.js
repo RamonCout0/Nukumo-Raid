@@ -11,6 +11,7 @@ app.use(express.json());
 // --- INICIALIZA OS DADOS ---
 let sessao = {
     mestre_online: true,
+    mestre: { nome: "Mestre", fotoUrl: "" },
     jogadores: [
         { id: 1, nome: "Jogador 1", hp: 10, max_hp: 10, fotoUrl: "https://api.dicebear.com/7.x/avataaars/png?seed=Jogador1" },
         { id: 2, nome: "Jogador 2", hp: 10, max_hp: 10, fotoUrl: "https://api.dicebear.com/7.x/avataaars/png?seed=Jogador2" },
@@ -23,14 +24,18 @@ let sessao = {
 if (fs.existsSync(DATA_FILE)) {
     try {
         const data = fs.readFileSync(DATA_FILE, 'utf-8');
-        sessao = JSON.parse(data);
+        const loaded = JSON.parse(data);
+        sessao = loaded;
+        // Garante que o campo mestre existe em saves antigos
+        if (!sessao.mestre) {
+            sessao.mestre = { nome: "Mestre", fotoUrl: "" };
+        }
         console.log('📂 Dados carregados do arquivo sessao.json');
     } catch (err) {
         console.log('⚠️ Erro ao carregar dados, usando padrão:', err.message);
     }
 }
 
-// --- SALVA DADOS NO ARQUIVO ---
 function salvarDados() {
     try {
         fs.writeFileSync(DATA_FILE, JSON.stringify(sessao, null, 2));
@@ -40,65 +45,57 @@ function salvarDados() {
     }
 }
 
-// --- ROTA INTERNA: BUSCAR ESTADO ---
+// --- ROTA INTERNA: BUSCAR ESTADO COMPLETO ---
 app.get('/interna/estado', (req, res) => {
     res.json(sessao);
 });
 
-// --- ROTA INTERNA: BUSCAR APENAS JOGADORES (compatibilidade) ---
+// --- ROTA INTERNA: BUSCAR APENAS JOGADORES ---
 app.get('/interna/jogadores', (req, res) => {
     res.json(sessao.jogadores);
 });
 
-// --- ROTA INTERNA: ALTERAR HP/DADOS DE JOGADOR ---
+// --- ROTA INTERNA: ALTERAR JOGADOR ---
 app.post('/interna/jogador/:id/alterar', (req, res) => {
     const id = parseInt(req.params.id);
-    
     if (isNaN(id) || id < 1 || id > 4) {
         return res.status(400).json({ error: "ID inválido (1-4)" });
     }
-    
-    const jogadorIndex = id - 1;
-    const jogador = sessao.jogadores[jogadorIndex];
-    
-    if (!jogador) {
-        return res.status(404).json({ error: "Jogador não encontrado" });
-    }
-    
-    // Atualiza os campos enviados
+    const jogador = sessao.jogadores[id - 1];
+    if (!jogador) return res.status(404).json({ error: "Jogador não encontrado" });
+
     const { hp, nome, max_hp, fotoUrl } = req.body;
-    
     if (hp !== undefined) jogador.hp = hp;
     if (nome !== undefined) jogador.nome = nome;
     if (max_hp !== undefined) jogador.max_hp = max_hp;
     if (fotoUrl !== undefined) jogador.fotoUrl = fotoUrl;
-    
+
     salvarDados();
-    
-    res.json({ 
-        message: "Jogador alterado com sucesso", 
-        jogador: jogador 
-    });
+    res.json({ message: "Jogador alterado com sucesso", jogador });
+});
+
+// --- ROTA INTERNA: ALTERAR MESTRE ---
+app.post('/interna/mestre/editar', (req, res) => {
+    const { nome, fotoUrl } = req.body;
+    if (nome !== undefined) sessao.mestre.nome = nome;
+    if (fotoUrl !== undefined) sessao.mestre.fotoUrl = fotoUrl;
+
+    salvarDados();
+    res.json({ message: "Mestre atualizado com sucesso", mestre: sessao.mestre });
 });
 
 // --- ROTA INTERNA: CURAR TODOS ---
 app.post('/interna/mestre/curar_todos', (req, res) => {
-    sessao.jogadores.forEach(p => {
-        p.hp = p.max_hp;
-    });
-    
+    sessao.jogadores.forEach(p => { p.hp = p.max_hp; });
     salvarDados();
-    
-    res.json({ 
-        message: "Todos curados!",
-        jogadores: sessao.jogadores
-    });
+    res.json({ message: "Todos curados!", jogadores: sessao.jogadores });
 });
 
-// --- ROTA PARA RESET (TESTE) ---
+// --- ROTA PARA RESET ---
 app.post('/interna/reset', (req, res) => {
     sessao = {
         mestre_online: true,
+        mestre: { nome: "Mestre", fotoUrl: "" },
         jogadores: [
             { id: 1, nome: "Jogador 1", hp: 10, max_hp: 10, fotoUrl: "" },
             { id: 2, nome: "Jogador 2", hp: 10, max_hp: 10, fotoUrl: "" },
@@ -106,15 +103,13 @@ app.post('/interna/reset', (req, res) => {
             { id: 4, nome: "Jogador 4", hp: 10, max_hp: 10, fotoUrl: "" }
         ]
     };
-    
     salvarDados();
-    
-    res.json({ message: "Sessão resetada!", sessao: sessao });
+    res.json({ message: "Sessão resetada!", sessao });
 });
 
 app.listen(PORT, () => {
     console.log(`\n📦 Microserviço de Dados rodando em http://localhost:${PORT}`);
     console.log(`💾 Dados persistidos em: ${DATA_FILE}`);
-    console.log(`📊 Estado atual:`, sessao.jogadores.map(j => `${j.nome} (HP: ${j.hp}/${j.max_hp})`).join(', '));
-    console.log('');
+    console.log(`👑 Mestre: ${sessao.mestre.nome}`);
+    console.log(`📊 Jogadores:`, sessao.jogadores.map(j => `${j.nome} (HP: ${j.hp}/${j.max_hp})`).join(', '));
 });

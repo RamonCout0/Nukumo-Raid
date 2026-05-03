@@ -3,23 +3,23 @@
   "jogadores": [
     {
       "id": 1,
-      "nome": "cachorro clerigo",
-      "hp": 6,
-      "max_hp": 10,
-      "fotoUrl": "https://imgs.search.brave.com/ZK8-SWBBqAUttDyKWULQVsNU_-U1xYDoZrKTW1JkW0c/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pLm1l/dHJvaW1nLmNvbS94/Zi01V3pBZzFOU0dm/RWFaRDB5RUlHbFZ2/NlA3TTlTOWtDb2k2/VmNrSTNRL3c6OTAw/L3E6ODUvZjp3ZWJw/L3BsYWluL2h0dHBz/Oi8vaW1hZ2VzLm1l/dHJvaW1nLmNvbS8y/MDIwLzAxLzA5MTI0/NDQ2L3NhbHNpY2hp/bmhhLmpwZw"
+      "nome": "cahorro ladino",
+      "hp": 8,
+      "max_hp": 8,
+      "fotoUrl": "https://imgs.search.brave.com/Ev_HJrmXun_5VY9x4AMlO5nS0i2q9MtwyqdQ_PDUdno/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/cGF0YXNkYWNhc2Eu/Y29tLmJyL3NpdGVz/L2RlZmF1bHQvZmls/ZXMvc3R5bGVzL2dh/bGxlcnlfY3JvcC9w/dWJsaWMvMjAyMy0w/Ny9kYWNoc2h1bmQ3/LmpwZy53ZWJwP2l0/b2s9RGlKeEJvRDg"
     },
     {
       "id": 2,
-      "nome": "cachorro bruxo",
-      "hp": 9,
-      "max_hp": 9,
-      "fotoUrl": "https://imgs.search.brave.com/8MlkXvqASqqbyWrfRM1t7lVefSI4RqaR_dw9EX5spQQ/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9zdGF0/aWMubmRtYWlzLmNv/bS5ici8yMDIzLzA5/L2NvcnJpZGEtZGUt/c2Fsc2ljaGEtODAw/eDUzMy5qcGc"
+      "nome": "cachorro druida",
+      "hp": 11,
+      "max_hp": 11,
+      "fotoUrl": "https://imgs.search.brave.com/-FaBuYH7jDo28NEmdJNuPGyp_rAMNlef-J5AHYdH1Vo/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9ibG9n/LXN0YXRpYy5wZXRs/b3ZlLmNvbS5ici93/cC1jb250ZW50L3Vw/bG9hZHMvMjAyMi8x/MS8wODE1MjgxNS9j/YWNob3Jyby1zYWxz/aWNoYS1hcG9pYWRv/LWVtLWdhbGhvLVBl/dGxvdmUtMS5qcGc"
     },
     {
       "id": 3,
-      "nome": "cachorro druida",
-      "hp": 8,
-      "max_hp": 8,
+      "nome": "cahorro mago",
+      "hp": 15,
+      "max_hp": 15,
       "fotoUrl": "https://imgs.search.brave.com/8V73COlMQCHW-NoOat8zl5i-cvTDAF8_201cRw3yqbA/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWcu/ZnJlZXBpay5jb20v/Zm90b3MtZ3JhdGlz/L2Nsb3NlLXZlcnRp/Y2FsLWRlLXVtLWNh/Y2hvcnJvLWJhc3Nl/LW1hcnJvbS1jb20t/dW1hLW5hdHVyZXph/LWJvcnJhZGFfMTgx/NjI0LTI4MjQ0Lmpw/Zz9zZW10PWFpc19o/eWJyaWQmdz03NDAm/cT04MA"
     },
     {
@@ -29,5 +29,9 @@
       "max_hp": 16,
       "fotoUrl": "https://imgs.search.brave.com/mFD-o0HAUMDsRhUT46GUBLGpnLd23aOmAZva4Yl2urE/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9vYmpl/Y3RzdG9yYWdlLnNh/LXZpbmhlZG8tMS5v/cmFjbGVjbG91ZC5j/b20vbi9heHVoM3Mz/MnNhYm0vYi9jb2Jh/c2ktaW5zdGl0dXRp/b25hbC1jbXMtYnVj/a2V0L28vcHJvZC9j/YWNob3Jyb19zYWx1/a2kud2VicA"
     }
-  ]
+  ],
+  "mestre": {
+    "nome": "asa",
+    "fotoUrl": "https://imgs.search.brave.com/68atQd34qLy8FjtawfcZWvmZiOZRv_-9_Z5sKbQhoww/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5pc3RvY2twaG90/by5jb20vaWQvMTA0/MjU0OTc4L3Bob3Rv/L2Zyb250LXZpZXct/b2YtYW5ncnktY2hp/aHVhaHVhLWdyb3ds/aW5nLXN0YW5kaW5n/LmpwZz9zPTYxMng2/MTImdz0wJms9MjAm/Yz1ydDhsOVpTcHlI/Mkpocy1RZ1kxeUgt/NGtobUtZd3RmU0V3/QlFfbHhVTU9zPQ"
+  }
 }

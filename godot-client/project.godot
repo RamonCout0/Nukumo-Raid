@@ -15,6 +15,14 @@ run/main_scene="uid://s3k7q06isx6m"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="uid://c5vvd1vlsiqhn"
 
+[display]
+
+window/size/viewport_width=1920
+window/size/viewport_height=1080
+window/size/mode=2
+window/stretch/mode="viewport"
+window/stretch/aspect="ignore"
+
 [dotnet]
 
 project/assembly_name="Nukumo Raid"

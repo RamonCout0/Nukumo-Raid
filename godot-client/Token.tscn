@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://odtkf735fkvt"]
+
+[ext_resource type="Script" uid="uid://dleaqqhife4dk" path="res://Token.gd" id="1_token"]
+[ext_resource type="Texture2D" uid="uid://cp8wu3dd8ygpt" path="res://token_1.png" id="2_token"]
+[ext_resource type="Shader" uid="uid://drt4a4rya2gt7" path="res://ficha_player.gdshader" id="3_0k6ug"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_eh4a0"]
+shader = ExtResource("3_0k6ug")
+shader_parameter/raio = 0.5
+shader_parameter/suavidade = 0.005
+shader_parameter/centro = Vector2(0.5, 0.5)
+
+[node name="Node2D" type="Node2D" unique_id=909875077]
+script = ExtResource("1_token")
+
+[node name="Anel" type="Sprite2D" parent="." unique_id=757236662]
+texture = ExtResource("2_token")
+
+[node name="Foto" type="Sprite2D" parent="." unique_id=239941775]
+material = SubResource("ShaderMaterial_eh4a0")

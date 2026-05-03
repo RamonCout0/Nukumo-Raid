@@ -1,8 +1,9 @@
 [gd_scene format=3 uid="uid://s3k7q06isx6m"]
 
 [ext_resource type="Script" uid="uid://dtp774biaur8" path="res://server.gd" id="1_glv2v"]
-[ext_resource type="Texture2D" uid="uid://c2cpgs5iyjhqx" path="res://bk.png" id="2_r0du0"]
+[ext_resource type="Texture2D" uid="uid://m5kacq8v3ktf" path="res://castelo.png" id="2_cm0pq"]
 [ext_resource type="PackedScene" uid="uid://c8orompmvex2j" path="res://ficha_player.tscn" id="2_uu6xs"]
+[ext_resource type="PackedScene" uid="uid://bo0p66ja0aopb" path="res://TokenManager.tscn" id="4_cm0pq"]
 
 [node name="Control" type="Control" unique_id=1338543223]
 layout_mode = 3
@@ -12,76 +13,86 @@ script = ExtResource("1_glv2v")
 [node name="FundoColorido" type="TextureRect" parent="." unique_id=1823392128]
 texture_filter = 1
 layout_mode = 0
-offset_right = 1152.0
-offset_bottom = 648.0
+offset_right = 1920.0
+offset_bottom = 1124.0
 mouse_filter = 2
-texture = ExtResource("2_r0du0")
+texture = ExtResource("2_cm0pq")
 
 [node name="MenuAcoes" type="VBoxContainer" parent="." unique_id=1524442108]
 layout_mode = 0
-offset_left = 20.0
-offset_top = 365.0
-offset_right = 90.0
-offset_bottom = 482.0
+offset_left = 484.0
+offset_top = 980.0
+offset_right = 554.0
+offset_bottom = 1097.0
 
 [node name="API" type="HTTPRequest" parent="." unique_id=907086127]
 
 [node name="InputFotoUrl" type="LineEdit" parent="." unique_id=1946367045]
 layout_mode = 0
-offset_top = 499.0
-offset_right = 107.0
-offset_bottom = 530.0
+offset_left = 28.0
+offset_top = 974.0
+offset_right = 135.0
+offset_bottom = 1005.0
 placeholder_text = "Link da foto"
 
 [node name="InputNome" type="LineEdit" parent="." unique_id=837298339]
 layout_mode = 0
-offset_top = 532.0
-offset_right = 107.0
-offset_bottom = 563.0
+offset_left = 28.0
+offset_top = 1008.0
+offset_right = 135.0
+offset_bottom = 1039.0
 placeholder_text = "Nome"
 
 [node name="InputHP" type="LineEdit" parent="." unique_id=1626304806]
 layout_mode = 0
-offset_left = 1.0
-offset_top = 565.0
-offset_right = 108.0
-offset_bottom = 596.0
+offset_left = 28.0
+offset_top = 1040.0
+offset_right = 135.0
+offset_bottom = 1071.0
 placeholder_text = "HP"
 
 [node name="Ficha1" parent="." unique_id=2006501656 instance=ExtResource("2_uu6xs")]
 layout_mode = 1
+offset_left = 3.0
+offset_top = 30.0
+offset_right = 3.0
+offset_bottom = 30.0
 
 [node name="Ficha2" parent="." unique_id=1160413986 instance=ExtResource("2_uu6xs")]
 layout_mode = 1
-offset_left = 1024.0
-offset_right = 1024.0
+offset_left = 131.0
+offset_top = 30.0
+offset_right = 131.0
+offset_bottom = 30.0
 
 [node name="Ficha3" parent="." unique_id=692294508 instance=ExtResource("2_uu6xs")]
 layout_mode = 1
-offset_top = 141.0
-offset_bottom = 141.0
+offset_left = 259.0
+offset_top = 30.0
+offset_right = 259.0
+offset_bottom = 30.0
 
 [node name="Ficha4" parent="." unique_id=1805078303 instance=ExtResource("2_uu6xs")]
 layout_mode = 1
-offset_left = 1025.0
-offset_top = 142.0
-offset_right = 1025.0
-offset_bottom = 142.0
+offset_left = 387.0
+offset_top = 30.0
+offset_right = 387.0
+offset_bottom = 30.0
 
 [node name="BtnSalvar" type="Button" parent="." unique_id=1052620601]
 layout_mode = 0
-offset_left = 27.0
-offset_top = 606.0
-offset_right = 83.0
-offset_bottom = 637.0
+offset_left = 54.0
+offset_top = 1076.0
+offset_right = 110.0
+offset_bottom = 1107.0
 text = "Salvar"
 
 [node name="SeletorJogador" type="OptionButton" parent="." unique_id=1624323774]
 layout_mode = 0
-offset_left = 113.0
-offset_top = 504.0
-offset_right = 145.0
-offset_bottom = 524.0
+offset_left = 145.0
+offset_top = 974.0
+offset_right = 235.0
+offset_bottom = 1005.0
 item_count = 4
 popup/item_0/text = "player1"
 popup/item_0/id = 0
@@ -94,12 +105,20 @@ popup/item_3/id = 3
 
 [node name="SeletorAtor" type="OptionButton" parent="." unique_id=191280725]
 layout_mode = 0
-offset_left = 211.0
-offset_top = 504.0
-offset_right = 303.0
-offset_bottom = 535.0
+offset_left = 245.0
+offset_top = 973.0
+offset_right = 337.0
+offset_bottom = 1004.0
 item_count = 2
 popup/item_0/text = "Mestre"
 popup/item_0/id = 0
 popup/item_1/text = "Jogador"
 popup/item_1/id = 1
+
+[node name="TokenManager" parent="." unique_id=1309467595 instance=ExtResource("4_cm0pq")]
+spawnar_ao_iniciar = true
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=150174883]
+texture_filter = 1
+position = Vector2(963, 570)
+scale = Vector2(0.34611067, 8.462132)

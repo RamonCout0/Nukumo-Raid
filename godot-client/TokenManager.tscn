@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://bo0p66ja0aopb"]
+
+[ext_resource type="Script" uid="uid://dyp8h4jefyg0s" path="res://TokenManager.gd" id="1_manager"]
+
+[node name="TokenManager" type="Node2D" unique_id=2061341877]
+script = ExtResource("1_manager")
