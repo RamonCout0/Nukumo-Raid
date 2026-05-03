@@ -102,6 +102,17 @@ app.post('/api/jogador/:id/dano', async (req, res) => {
 });
 
 // --- CURAR TODOS ---
+
+// --- EDITAR MESTRE ---
+app.post('/api/mestre/editar', async (req, res) => {
+    try {
+        const response = await axios.post(`${SERVICO_INTERNO}/mestre/editar`, req.body);
+        res.json({ success: true, ...response.data });
+    } catch (error) {
+        res.status(500).json({ error: "Falha ao editar mestre", details: error.message });
+    }
+});
+
 app.post('/api/mestre/curar_todos', async (req, res) => {
     try {
         const response = await axios.post(`${SERVICO_INTERNO}/mestre/curar_todos`);
