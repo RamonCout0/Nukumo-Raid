@@ -53,7 +53,7 @@ Ao consultar o endpoint `/api/estado?ator={tipo}`, o Gateway injeta links de aç
 
 1.  **Clonar o Repositório:**
     ```bash
-    git clone https://github.com/seu-usuario/nukumo-raid-vtt.git
+    git clone https://github.com/RamonCout0/Nukumo-Raid.git
     cd nukumo-raid-vtt
     ```
 
