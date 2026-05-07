@@ -96,3 +96,7 @@ A documentação completa e interativa, que permite testar os endpoints e visual
 * **Controlo de Acesso (ACL):** O conteúdo visível e as interações mudam conforme o papel selecionado no sistema.
 
 ---
+
+
+
+link do slides:https://canva.link/gl4riq5zmuak545
