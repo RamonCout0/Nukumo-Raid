@@ -1,59 +1,97 @@
-🎲 Nukumo Raid VTT - Sistema de RPG Distribuído
-Este projeto é um Gerenciador de Fichas para RPG (Virtual Tabletop) desenvolvido para a disciplina de Sistemas Distribuídos. O sistema utiliza uma arquitetura de microserviços com um API Gateway centralizador, documentação via Swagger e implementação de HATEOAS.
+# 🎲 Nukumo Raid VTT
+> **Sistema de RPG Distribuído** — Gerenciador de fichas e estados em tempo real utilizando arquitetura de microserviços e princípios RESTful avançados.
 
-🚀 Tecnologias Utilizadas
-Frontend: Godot Engine 4.6 (Exportado para HTML5/Web).
+Este projeto foi desenvolvido para a disciplina de **Sistemas Distribuídos**. O objetivo é demonstrar a orquestração de serviços, desacoplamento de persistência e a implementação de hipermídia como motor de estado da aplicação (HATEOAS).
 
-Backend: Node.js com Express.
+---
 
-Comunicação: Axios (Comunicação inter-serviços).
+## 🏗️ Arquitetura do Sistema
 
-Documentação: Swagger UI / OpenAPI 3.0.
+O sistema utiliza uma abordagem de **Microserviços** para separar as responsabilidades de roteamento, lógica de negócio e persistência de dados.
 
-🏗️ Arquitetura do Sistema
-O sistema foi dividido em dois serviços principais para simular um ambiente distribuído real:
+* **API Gateway (Porta 3000):** Atua como o ponto de entrada único (*Single Entry Point*). Gere a segurança, o roteamento de pedidos e a implementação de **HATEOAS**, injetando links dinâmicos nas respostas com base no papel (ator) do utilizador.
 
-API Gateway (Porta 3000): O ponto de entrada único. Ele gerencia a segurança, o roteamento e implementa o HATEOAS, gerando links dinâmicos dependendo do ator (Mestre ou Jogador).
+* **Microserviço de Dados (Porta 3001):** Responsável pela persistência do estado da sessão e manipulação direta dos dados dos jogadores, garantindo que o Gateway permaneça *stateless*.
 
-Microserviço de Dados (Porta 3001): Responsável pela persistência do estado da sessão e manipulação direta dos dados dos jogadores.
+* **Frontend (Godot 4.x):** Cliente rico que consome a API de forma reativa, construindo a interface dinamicamente a partir dos links fornecidos pelo servidor.
 
-🛠️ Como Rodar o Projeto
-Pré-requisitos
-Node.js instalado.
+---
 
-Navegador moderno para o Cliente Web.
+## 🚀 Tecnologias Utilizadas
 
-1. Iniciar o Microserviço de Dados
-Bash
-cd microservices
-node data_service.js
-2. Iniciar o API Gateway
-Bash
-cd api-gateway
-npm install
-node server.js
-3. Acessar o Cliente
-Abra o arquivo index.html na pasta do cliente ou rode o projeto diretamente pelo Godot.
+| Camada | Tecnologia |
+| :--- | :--- |
+| **Frontend** | Godot Engine 4 (Exportação HTML5/Web) |
+| **Backend** | Node.js com Express |
+| **Comunicação** | Axios (Inter-serviços) |
+| **Documentação** | Swagger UI / OpenAPI 3.0 |
+| **Processamento Visual** | Godot Shaders (GLSL) |
 
-🔗 HATEOAS e Dinâmica de Atores
-A grande força deste projeto é o uso de Hypermedia as the Engine of Application State.
-Ao consultar o estado (/api/estado?ator=X), o Gateway injeta links de ações permitidas:
+---
 
-Se Ator = Mestre: O JSON de resposta inclui o link para curar_todos.
+## 🔗 HATEOAS e Dinâmica de Atores
 
-Se Ator = Jogador: O JSON inclui links específicos para sofrer_dano ou reviver apenas para aquele ID.
+A grande força deste projeto é o uso de **Hypermedia as the Engine of Application State**. O cliente não possui lógica fixa sobre o que o utilizador pode fazer; ele descobre as ações através da API.
 
-Isso permite que o cliente Godot construa a interface (botões) dinamicamente com base no que o servidor diz que é possível fazer.
+Ao consultar o endpoint `/api/estado?ator={tipo}`, o Gateway injeta links de ações permitidas:
 
-📖 Documentação da API
-A documentação completa, com testes integrados, está disponível através do Swagger:
-🔗 http://localhost:3000/docs
+* **Se Ator = Mestre:** A resposta inclui hiperlinks para `curar_todos`, `resetar_hp` ou `adicionar_xp`.
+* **Se Ator = Jogador:** A resposta inclui links específicos apenas para o seu ID, como `sofrer_dano` ou `usar_item`.
 
-📝 Regras de Negócio Implementadas
-CRUD de Personagens: Edição de nome, HP e foto via Gateway.
+> **Vantagem:** O cliente Godot constrói os botões da interface dinamicamente. Se uma nova regra de negócio for adicionada ao servidor, o cliente exibe a nova opção automaticamente sem necessidade de recompilar o código do jogo.
 
-Sistema de Combate: Aplicação de dano e cura em tempo real.
+> **O que foi implementado:** por enquanto só existe a opção de `curar_todos` e `sofrer_dano`, outros atributos serão disponíveis nas autalizações seguintes.
+---
 
-Filtro de Visão: O conteúdo da tela muda conforme o papel selecionado no sistema.
+## 🛠️ Como Executar o Projeto
 
-Shader de Interface: Processamento visual das fotos via GPU (Godot Shaders).
+### Pré-requisitos
+* [Node.js](https://nodejs.org/) instalado.
+* Navegador moderno para correr o Cliente Web.
+
+### Instalação e Execução
+
+1.  **Clonar o Repositório:**
+    ```bash
+    git clone https://github.com/seu-usuario/nukumo-raid-vtt.git
+    cd nukumo-raid-vtt
+    ```
+
+2.  **Iniciar o Microserviço de Dados:**
+    ```bash
+    cd microservices
+    # npm install (se necessário)
+    node data_service.js
+    ```
+
+3.  **Iniciar o API Gateway:**
+    ```bash
+    cd ../api-gateway
+    npm install
+    node server.js
+    obs:caso queira iniciar o gateway e microserviços, execute apenas iniciar.js para ambos iniciar o processo.
+    ```
+
+4.  **Acessar o Cliente:**
+    Abra o ficheiro `index.html` na pasta do cliente ou corra o projeto diretamente através do editor **Godot 4**.
+
+
+
+
+---
+
+## 📖 Documentação da API
+
+A documentação completa e interativa, que permite testar os endpoints e visualizar a estrutura dos microserviços, está disponível via Swagger:
+
+🔗 **URL:** [http://localhost:3000/docs](http://localhost:3000/docs)
+
+---
+
+## 📝 Regras de Negócio Implementadas
+
+* **CRUD de Personagens:** Edição de atributos (Nome, HP, Foto) centralizada no Gateway.
+* **Sistema de Combate:** Lógica de dano e cura processada no lado do servidor para evitar batotas (*cheating*).
+* **Controlo de Acesso (ACL):** O conteúdo visível e as interações mudam conforme o papel selecionado no sistema.
+
+---
