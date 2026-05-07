@@ -69,9 +69,10 @@ Ao consultar o endpoint `/api/estado?ator={tipo}`, o Gateway injeta links de aç
     cd ../api-gateway
     npm install
     node server.js
-    obs:caso queira iniciar o gateway e microserviços, execute apenas iniciar.js para ambos iniciar o processo.
+    
     ```
 
+obs:caso queira iniciar o gateway e microserviços ao mesmo tempo, execute apenas iniciar.js para ambos iniciar o processo.
 4.  **Acessar o Cliente:**
     Abra o ficheiro `index.html` na pasta do cliente ou corra o projeto diretamente através do editor **Godot 4**.
 
